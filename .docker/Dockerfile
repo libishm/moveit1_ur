@@ -23,31 +23,48 @@ RUN apt update && apt install -y \
 # ROS
 RUN apt update && apt install -y \
     pkg-config \
+    # python-is-python3 \
     python3-catkin-tools \
     python3-rosdep \
     python3-rosinstall-generator \
     python3-vcstool \
+    # python3-lxml \
     ros-$ROSDISTRO-rqt \
     ros-$ROSDISTRO-rqt-joint-trajectory-controller \
     ros-$ROSDISTRO-moveit \
-    ros-$ROSDISTRO-moveit-opw-kinematics-plugin \
-    ros-$ROSDISTRO-ros-industrial-cmake-boilerplate
-
-
-
+    # UR dependencies
+    ros-$ROSDISTRO-ur-client-library \
+    ros-$ROSDISTRO-controller-manager \
+    ros-$ROSDISTRO-pass-through-controllers \
+    ros-$ROSDISTRO-force-torque-sensor-controller \
+    ros-$ROSDISTRO-industrial-robot-status-interface \
+    ros-$ROSDISTRO-industrial-robot-status-controller \
+    ros-$ROSDISTRO-joint-state-controller \
+    ros-$ROSDISTRO-joint-trajectory-controller \
+    ros-$ROSDISTRO-cartesian-trajectory-controller \
+    ros-$ROSDISTRO-scaled-joint-trajectory-controller \
+    ros-$ROSDISTRO-speed-scaling-interface \
+    ros-$ROSDISTRO-speed-scaling-state-controller \
+    ros-$ROSDISTRO-velocity-controllers \
+    ros-$ROSDISTRO-effort-controllers \
+    ros-$ROSDISTRO-kdl-parser 
+    
 # Reduce size by removing apt cache
 RUN ["/bin/bash", "-c", "rm -rf /var/lib/apt/lists/*"]
 
-RUN pip3 install catkin_tools
+# RUN pip3 install catkin_tools lmxl
 
 # Create workspace and copy pkg's to container
 RUN mkdir -p dev_ws/src
 WORKDIR /dev_ws/src
 COPY . /dev_ws/src/
 
-# Build workspace
+# Install depencies and build workspace
 WORKDIR /dev_ws
+
 RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
+    # rosdep update &&\
+    # rosdep install --rosdistro $ROS_DISTRO --ignore-src --from-paths src &&\
     catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release &&\
     catkin build \
     "]
