@@ -16,4 +16,4 @@ docker run -it \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --net=host \
     --gpus 'all,"capabilities=compute,display,graphics,utility"' \
-    moveit1:latest
+    moveit1_ur:latest

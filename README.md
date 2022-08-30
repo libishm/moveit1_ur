@@ -5,7 +5,7 @@
 ### Build
 
 ```shell
-docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1:latest
+docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1_ur:latest
 ```
 
 ### Run
@@ -24,7 +24,7 @@ docker run -it \
     --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --net=host \
-    moveit1:latest
+    moveit1_ur:latest
 ```
 
 When using nvidia-docker
@@ -44,7 +44,7 @@ docker run -it \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --net=host \
     --gpus 'all,"capabilities=compute,display,graphics,utility"' \
-    moveit1:latest
+    moveit1_ur:latest
 ```
 
 ### IDE
