@@ -59,6 +59,8 @@ install Pycharm using Jetbrains toolbox, once in the container run
 
 #### vscode
 
-install docker extension, more info [here](https://code.visualstudio.com/docs/remote/containers)
+install the following vs code extensions
+- [docker](https://code.visualstudio.com/docs/containers/overview)
+- [remote development](https://code.visualstudio.com/docs/remote/remote-overview)
 
 dev_container_config for Python development provided in .docker folder
