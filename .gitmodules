@@ -4,3 +4,6 @@
 [submodule "universal_robot"]
 	path = universal_robot
 	url = git@github.com:vinceHuyghe/universal_robot.git
+[submodule "trajectory_tools"]
+	path = trajectory_tools
+	url = git@github.com:vinceHuyghe/trajectory_tools.git
