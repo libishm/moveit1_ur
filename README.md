@@ -54,7 +54,7 @@ docker run -it \
 install Pycharm using Jetbrains toolbox, once in the container run
 
 ```shell
-/home/v/.local/share/JetBrains/Toolbox/apps/PyCharm-P/ch-0/222.3739.56/bin/pycharm.sh
+/home/$UID/.local/share/JetBrains/Toolbox/apps/PyCharm-P/ch-0/222.3739.56/bin/pycharm.sh
 ```
 
 #### vscode
