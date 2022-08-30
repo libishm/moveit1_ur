@@ -1,4 +1,10 @@
-# Docker container for Moveit 1
+# Docker container for Moveit 1 and Universal Robots
+
+Only the ur10e_moveit_config has been updated  
+
+To update ur(x)_moveit_config
+- Use the setup assistant to regenerate pkg
+- Set acceleration_limits to true and set max_acc in config/joint_limits.yaml
 
 ## Docker
 
@@ -9,6 +15,8 @@ docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1_ur:latest
 ```
 
 ### Run
+
+On ubuntu 20.04 --privileged flag is required
 
 ```shell
 docker run -it \
