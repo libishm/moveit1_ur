@@ -15,5 +15,6 @@ docker run -it \
     --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --net=host \
+    --privileged \
     --gpus 'all,"capabilities=compute,display,graphics,utility"' \
     moveit1_ur:latest
