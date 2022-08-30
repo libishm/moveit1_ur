@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# privileged flag required for ubuntu 20.04
+
 echo -e "Starting up the user moveit1 container, this container will access to the users home directory and logged in as the user with their password and x sever access.\nYou will not own the workspace though, use sudo chown -R \$UID /dev_ws"
 
 docker run -it \
