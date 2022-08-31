@@ -46,12 +46,18 @@ RUN apt update && apt install -y \
     ros-$ROSDISTRO-speed-scaling-state-controller \
     ros-$ROSDISTRO-velocity-controllers \
     ros-$ROSDISTRO-effort-controllers \
-    ros-$ROSDISTRO-kdl-parser 
-    
+    ros-$ROSDISTRO-kdl-parser \
+    # RQT joint trajectory plot
+    ros-$ROSDISTRO-roslint \
+    ros-$ROSDISTRO-rqt-gui \
+    ros-$ROSDISTRO-rqt-gui-py \
+    ros-$ROSDISTRO-rqt-py-common \
+    python3-matplotlib
+
+
 # Reduce size by removing apt cache
 RUN ["/bin/bash", "-c", "rm -rf /var/lib/apt/lists/*"]
 
-# RUN pip3 install catkin_tools lmxl
 
 # Create workspace and copy pkg's to container
 RUN mkdir -p dev_ws/src
