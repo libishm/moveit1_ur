@@ -30,6 +30,7 @@ RUN apt update && apt install -y \
     ros-$ROSDISTRO-rqt \
     ros-$ROSDISTRO-rqt-joint-trajectory-controller \
     ros-$ROSDISTRO-moveit \
+    ros-$ROSDISTRO-trac-ik-kinematics-plugin \
     # UR dependencies
     ros-$ROSDISTRO-ur-client-library \
     ros-$ROSDISTRO-ur-msgs \
