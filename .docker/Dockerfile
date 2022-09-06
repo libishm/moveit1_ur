@@ -18,6 +18,7 @@ RUN apt update && apt install -y \
     python3-pip \
     build-essential \
     cmake \
+    iputils-ping \
     zsh 
 
 # ROS

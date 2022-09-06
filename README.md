@@ -72,3 +72,28 @@ install the following vs code extensions
 - [remote development](https://code.visualstudio.com/docs/remote/remote-overview)
 
 dev_container_config for Python development provided in .docker folder
+
+
+#### terminator
+
+terminator is installed in the container for multiple terminals launch terminator from the CLI inside the container
+
+
+## Running on the robot
+
+TODO add instruction's for pendant
+
+Launch the following files from the container
+
+```shell
+roslaunch ur_robot_driver ur10e_bringup.launch robot_ip:=192.168.1.100
+```
+
+```shell
+roslaunch ur10e_moveit_config ur10e_moveit_planning_execution.launch
+```
+
+```shell
+roslaunch ur10e_moveit_config moveit_rviz.launch
+```
+
