@@ -81,13 +81,14 @@ terminator is installed in the container for multiple terminals launch terminato
 
 ## Running on the robot
 
-TODO add instruction's for pendant
-
 Launch the following files from the container
 
 ```shell
 roslaunch ur_robot_driver ur10e_bringup.launch robot_ip:=192.168.1.100
 ```
+
+On the UR pendant start the URcaps program.
+Then launch the following.
 
 ```shell
 roslaunch ur10e_moveit_config ur10e_moveit_planning_execution.launch
