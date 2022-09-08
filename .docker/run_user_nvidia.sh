@@ -19,4 +19,5 @@ docker run -it \
     --net=host \
     --privileged \
     --gpus 'all,"capabilities=compute,display,graphics,utility"' \
+    --cap-add=sys_nice
     moveit1_ur:latest

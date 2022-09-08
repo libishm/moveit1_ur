@@ -1,8 +1,15 @@
+# TODO
+
+- [] update all docker run scripts and examples with nice flag
+
 # Docker container for Moveit 1 and Universal Robots
+
+For IAAC MRAC II Advanced Technology seminar
 
 Note: Only the ur10e_moveit_config has been updated, in case you want this repo with a different ur robot you will need to update the corresponding moveit_config.
 
 To update ur(x)_moveit_config
+
 - Use the setup assistant to regenerate pkg
 - Set acceleration_limits to true and set max_acc in config/joint_limits.yaml
 
@@ -21,6 +28,7 @@ To enable Docker to use Nvidia driver (Nvidia driver is not compatible with pree
 ```shell
 .docker/build_image.sh
 ```
+
 or
 
 ```shell
@@ -94,20 +102,26 @@ install Pycharm using Jetbrains toolbox, once in the container run
 #### vscode
 
 install the following vs code extensions
+
 - [docker](https://code.visualstudio.com/docs/containers/overview)
 - [remote development](https://code.visualstudio.com/docs/remote/remote-overview)
 
 dev_container_config for Python development provided in .docker folder
 
-
 #### terminator
 
 terminator is installed in the container for multiple terminals launch terminator from the CLI inside the container
 
+## Running in simulation
+
+```shell
+roslaunch ur10e_moveit_config demo.launch
+```
 
 ## Running on the robot
 
 These instructions assume
+
 - Robot IP: 192.168.56.101
 - Docker Host IP: 192.168.56.1
 
@@ -125,7 +139,6 @@ If URcaps fails to connect add the following rule to ufw
 sudo ufw allow from 192.168.56.101 to 192.168.56.1
 ```
 
-
 Then launch the following.
 
 ```shell
@@ -135,4 +148,3 @@ roslaunch ur10e_moveit_config ur10e_moveit_planning_execution.launch
 ```shell
 roslaunch ur10e_moveit_config moveit_rviz.launch
 ```
-
