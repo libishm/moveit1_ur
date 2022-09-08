@@ -114,7 +114,8 @@ These instructions assume
 Launch the following files from the container
 
 ```shell
-roslaunch ur_robot_driver ur10e_bringup.launch robot_ip:=192.168.1.100
+roslaunch ur_robot_driver ur10e_bringup.launch robot_ip:=192.168.56.101 \         
+  kinematics_config:=/dev_ws/src/universal_robot/ur10e_moveit_config/config/iaac_ur10e.yaml
 ```
 
 On the UR pendant start the URcaps program.  
