@@ -1,6 +1,6 @@
 # Docker container for Moveit 1 and Universal Robots
 
-Only the ur10e_moveit_config has been updated  
+Note: Only the ur10e_moveit_config has been updated, in case you want this repo with a different ur robot you will need to update the corresponding moveit_config.
 
 To update ur(x)_moveit_config
 - Use the setup assistant to regenerate pkg
@@ -8,7 +8,20 @@ To update ur(x)_moveit_config
 
 ## Docker
 
+The .docker folder of this repo contains convenience hell scripts for building and running the Docker container. These should be run from the root of the repo.
+
+### Docker installation
+
+Follow instructions from Docker [docs](https://docs.docker.com/engine/install/ubuntu/)
+
+To enable Docker to use Nvidia driver (Nvidia driver is not compatible with preempt_rt kernel) follow instructions from Nvidia [docs](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
+
 ### Build
+
+```shell
+.docker/build_image.sh
+```
+or
 
 ```shell
 docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1_ur:latest
@@ -16,7 +29,13 @@ docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1_ur:latest
 
 ### Run
 
-On ubuntu 20.04 --privileged flag is required
+On Ubuntu 20.04 --privileged flag is required on Ubuntu 22 it can be omitted
+
+```shell
+.docker/run_user.sh
+```
+
+or
 
 ```shell
 docker run -it \
@@ -35,7 +54,13 @@ docker run -it \
     moveit1_ur:latest
 ```
 
-When using nvidia-docker
+For nvidia-docker
+
+```shell
+.docker/run_user.sh
+```
+
+or
 
 ```shell
 docker run -it \
@@ -51,6 +76,7 @@ docker run -it \
     --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --net=host \
+    --privileged \
     --gpus 'all,"capabilities=compute,display,graphics,utility"' \
     moveit1_ur:latest
 ```
@@ -82,7 +108,7 @@ terminator is installed in the container for multiple terminals launch terminato
 ## Running on the robot
 
 These instructions assume
-- Robot IP: 192.168.56.100
+- Robot IP: 192.168.56.101
 - Docker Host IP: 192.168.56.1
 
 Launch the following files from the container
@@ -95,7 +121,7 @@ On the UR pendant start the URcaps program.
 If URcaps fails to connect add the following rule to ufw
 
 ```shell
-sudo ufw allow from 192.168.56.100 to 192.168.56.1
+sudo ufw allow from 192.168.56.101 to 192.168.56.1
 ```
 
 
