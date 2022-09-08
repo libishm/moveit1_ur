@@ -81,13 +81,24 @@ terminator is installed in the container for multiple terminals launch terminato
 
 ## Running on the robot
 
+These instructions assume
+- Robot IP: 192.168.56.100
+- Docker Host IP: 192.168.56.1
+
 Launch the following files from the container
 
 ```shell
 roslaunch ur_robot_driver ur10e_bringup.launch robot_ip:=192.168.1.100
 ```
 
-On the UR pendant start the URcaps program.
+On the UR pendant start the URcaps program.  
+If URcaps fails to connect add the following rule to ufw
+
+```shell
+sudo ufw allow from 192.168.56.100 to 192.168.56.1
+```
+
+
 Then launch the following.
 
 ```shell
