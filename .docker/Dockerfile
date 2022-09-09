@@ -27,7 +27,7 @@ RUN apt update && apt install -y \
     python3-catkin-tools \
     python3-rosdep \
     python3-rosinstall-generator \
-    python3-wstool \
+    python3-vcstool \
     ros-$ROSDISTRO-rqt \
     ros-$ROSDISTRO-rqt-joint-trajectory-controller \
     ros-$ROSDISTRO-moveit \
@@ -54,26 +54,12 @@ RUN apt update && apt install -y \
     ros-$ROSDISTRO-rqt-gui \
     ros-$ROSDISTRO-rqt-gui-py \
     ros-$ROSDISTRO-rqt-py-common \
-    python3-matplotlib
-
-
+    python3-matplotlib 
 
 # Reduce size by removing apt cache
 RUN ["/bin/bash", "-c", "rm -rf /var/lib/apt/lists/*"]
 
-RUN mkdir -p stomp_ws/src
-WORKDIR /stomp_ws
-
-# STOMP
-# RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
-#     wstool init src &&\
-#     wstool set -t src stomp_ros https://github.com/ros-industrial/stomp_ros.git --git &&\
-#     wstool update -t src stomp_ros &&\
-#     wstool merge -y -t src src/stomp_ros/dependencies.rosinstall &&\
-#     wstool update -t src stomp ros_industrial_cmake_boilerplate &&\
-#     catkin build \
-#     "]
-
+# RUN echo "* - nice -15" >> /etc/security/limits.conf
 
 # Create workspace and copy pkg's to container
 RUN mkdir -p dev_ws/src
@@ -84,8 +70,6 @@ COPY . /dev_ws/src/
 WORKDIR /dev_ws
 
 RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
-    # rosdep update &&\
-    # rosdep install --rosdistro $ROS_DISTRO --ignore-src --from-paths src &&\
     catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release &&\
     catkin build \
     "]
