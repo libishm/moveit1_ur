@@ -1,17 +1,29 @@
-# TODO
+# Docker Moveit 1 and Universal Robots
 
-- [] update all docker run scripts and examples with nice flag
+This container will access to the users home directory and logged in as the user with their password and x sever access.
 
-# Docker container for Moveit 1 and Universal Robots
+Contents:
 
-For IAAC MRAC II Advanced Technology seminar
+- Moveit 1
 
-Note: Only the ur10e_moveit_config has been updated, in case you want this repo with a different ur robot you will need to update the corresponding moveit_config.
+  - IK
+    - KDL
+    - TRAC-IK
 
-To update ur(x)_moveit_config
+  - Planning pipelines
+    - OMPL
+    - CHOMP
+    - STOMP
+    - Pilz Industrial Motion Planner
 
-- Use the setup assistant to regenerate pkg
-- Set acceleration_limits to true and set max_acc in config/joint_limits.yaml
+- Universal Robot description and driver
+
+  Note: Only the ur10e_moveit_config has been updated, in case you want this repo with a different ur robot you will need to update the corresponding moveit_config.
+  To update ur(x)_moveit_config
+
+  - Use the setup assistant to regenerate pkg
+  - Set acceleration_limits to true and set max_acc in config/joint_limits.yaml
+  - Add STOMP pipeline to move_group.launch
 
 ## Docker
 
@@ -23,27 +35,31 @@ Follow instructions from Docker [docs](https://docs.docker.com/engine/install/ub
 
 To enable Docker to use Nvidia driver (Nvidia driver is not compatible with preempt_rt kernel) follow instructions from Nvidia [docs](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 
-### Build
+### Build Image
+
+Using convenience shell script (must be run from root of repo)
 
 ```shell
 .docker/build_image.sh
 ```
 
-or
+Or (must be run from root of repo)
 
 ```shell
 docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1_ur:latest
 ```
 
-### Run
+### Run Image
 
-On Ubuntu 20.04 --privileged flag is required on Ubuntu 22 it can be omitted
+note: On Ubuntu 20.04 --privileged flag is required on Ubuntu 22 it can be omitted
+
+Using convenience shell script (must be run from root of repo)
 
 ```shell
 .docker/run_user.sh
 ```
 
-or
+or (must be run from root of repo)
 
 ```shell
 docker run -it \

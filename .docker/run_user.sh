@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo -e "Starting up the user moveit1 container, this container will access to the users home directory and logged in as the user with their password and x sever access.\nYou will not own the workspace though, use sudo chown -R \$UID /moveit1_ws"
+echo -e "In order for the ur_robot_driver to run unnicely use su $USER"
 
 docker run -it \
     --user=$(id -u $USER):$(id -g $USER) \
