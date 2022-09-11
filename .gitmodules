@@ -9,3 +9,6 @@
 [submodule "rqt_joint_trajectory_plot"]
 	path = rqt_joint_trajectory_plot
 	url = git@github.com:tork-a/rqt_joint_trajectory_plot.git
+[submodule "Universal_Robots_ROS_Driver"]
+	path = Universal_Robots_ROS_Driver
+	url = git@github.com:vinceHuyghe/Universal_Robots_ROS_Driver.git
