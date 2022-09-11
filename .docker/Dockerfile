@@ -59,7 +59,7 @@ RUN apt update && apt install -y \
 # Reduce size by removing apt cache
 RUN ["/bin/bash", "-c", "rm -rf /var/lib/apt/lists/*"]
 
-# RUN echo "* - nice -15" >> /etc/security/limits.conf
+RUN echo "* - nice -15" >> /etc/security/limits.conf
 
 # Create workspace and copy pkg's to container
 RUN mkdir -p dev_ws/src
