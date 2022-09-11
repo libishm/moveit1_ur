@@ -15,4 +15,5 @@ docker run -it \
     --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --net=host \
+    --cap-add=sys_nice \
     moveit1_ur:latest

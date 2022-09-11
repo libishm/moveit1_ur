@@ -54,17 +54,30 @@ RUN apt update && apt install -y \
     ros-$ROSDISTRO-rqt-gui \
     ros-$ROSDISTRO-rqt-gui-py \
     ros-$ROSDISTRO-rqt-py-common \
-    python3-matplotlib 
+    python3-matplotlib \
+    #STOMP
+    ros-$ROSDISTRO-ros-industrial-cmake-boilerplate 
 
 # Reduce size by removing apt cache
 RUN ["/bin/bash", "-c", "rm -rf /var/lib/apt/lists/*"]
 
 RUN echo "* - nice -15" >> /etc/security/limits.conf
 
+# build STOMP dependencie nlot
+RUN ["/bin/bash", "-c", "git clone https://github.com/stevengj/nlopt.git &&\
+                        cd nlopt &&\
+                        mkdir build &&\
+                        cd build &&\
+                        cmake .. &&\
+                        make &&\
+                        make install"]
+
+
 # Create workspace and copy pkg's to container
 RUN mkdir -p dev_ws/src
 WORKDIR /dev_ws/src
 COPY . /dev_ws/src/
+
 
 # build workspace
 WORKDIR /dev_ws

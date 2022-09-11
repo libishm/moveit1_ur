@@ -12,3 +12,9 @@
 [submodule "Universal_Robots_ROS_Driver"]
 	path = Universal_Robots_ROS_Driver
 	url = git@github.com:vinceHuyghe/Universal_Robots_ROS_Driver.git
+[submodule "stomp_ros"]
+	path = stomp_ros
+	url = https://github.com/ros-industrial/stomp_ros.git
+[submodule "stomp"]
+	path = stomp
+	url = https://github.com/ros-industrial/stomp.git

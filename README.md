@@ -59,6 +59,7 @@ docker run -it \
     --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --net=host \
+    --cap-add=sys_nice \
     moveit1_ur:latest
 ```
 
@@ -85,6 +86,7 @@ docker run -it \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --net=host \
     --privileged \
+    --cap-add=sys_nice \
     --gpus 'all,"capabilities=compute,display,graphics,utility"' \
     moveit1_ur:latest
 ```
