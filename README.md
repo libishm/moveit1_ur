@@ -1,6 +1,6 @@
 # Docker Moveit 1 and Universal Robots
 
-This container will access to the users home directory and logged in as the user with their password and x sever access.
+## Description
 
 Contents:
 
@@ -18,7 +18,7 @@ Contents:
 
 - Universal Robot description and driver
 
-  Note: Only the ur10e_moveit_config has been updated, in case you want this repo with a different ur robot you will need to update the corresponding moveit_config.
+  Note: Only the ur10e_moveit_config has been updated, in case you want use this repo with a different UR robot you will need to update the corresponding moveit_config.
   To update ur(x)_moveit_config
 
   - Use the setup assistant to regenerate pkg
@@ -27,6 +27,7 @@ Contents:
 
 ## Docker
 
+This container will access to the users home directory and logged in as the user with their password and x sever access.  
 The .docker folder of this repo contains convenience hell scripts for building and running the Docker container. These should be run from the root of the repo.
 
 ### Docker installation
@@ -37,13 +38,15 @@ To enable Docker to use Nvidia driver (Nvidia driver is not compatible with pree
 
 ### Build Image
 
-Using convenience shell script (must be run from root of repo)
+The following should be run from the root of repo
+
+Using convenience shell script
 
 ```shell
 .docker/build_image.sh
 ```
 
-Or (must be run from root of repo)
+Or
 
 ```shell
 docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1_ur:latest
@@ -53,13 +56,15 @@ docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1_ur:latest
 
 note: On Ubuntu 20.04 --privileged flag is required on Ubuntu 22 it can be omitted
 
-Using convenience shell script (must be run from root of repo)
+The following should be run from the root of repo
+
+Using convenience shell script
 
 ```shell
 .docker/run_user.sh
 ```
 
-or (must be run from root of repo)
+or
 
 ```shell
 docker run -it \
@@ -114,7 +119,7 @@ docker run -it \
 install Pycharm using Jetbrains toolbox, once in the container run
 
 ```shell
-/home/$UID/.local/share/JetBrains/Toolbox/apps/PyCharm-P/ch-0/222.3739.56/bin/pycharm.sh
+/home/$USER/.local/share/JetBrains/Toolbox/apps/PyCharm-P/ch-0/222.3739.56/bin/pycharm.sh
 ```
 
 #### vscode

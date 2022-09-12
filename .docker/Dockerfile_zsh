@@ -18,7 +18,8 @@ RUN apt update && apt install -y \
     python3-pip \
     build-essential \
     cmake \
-    iputils-ping 
+    iputils-ping \
+    zsh 
 
 # ROS
 RUN apt update && apt install -y \
@@ -64,12 +65,12 @@ RUN echo "* - nice -15" >> /etc/security/limits.conf
 
 # build STOMP dependencie nlot
 RUN ["/bin/bash", "-c", "git clone https://github.com/stevengj/nlopt.git &&\
-    cd nlopt &&\
-    mkdir build &&\
-    cd build &&\
-    cmake .. &&\
-    make &&\
-    make install"]
+                        cd nlopt &&\
+                        mkdir build &&\
+                        cd build &&\
+                        cmake .. &&\
+                        make &&\
+                        make install"]
 
 
 # Create workspace and copy pkg's to container
@@ -77,8 +78,7 @@ RUN mkdir -p dev_ws/src
 WORKDIR /dev_ws/src
 COPY . /dev_ws/src/
 
-
-# build workspace
+# Build workspace
 WORKDIR /dev_ws
 
 RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
@@ -86,9 +86,10 @@ RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
     catkin build \
     "]
 
+RUN ["/bin/bash", "-c", "cp /dev_ws/src/.docker/entrypoint_zsh.sh / && chmod 777 /entrypoint_zsh.sh"]
+ENTRYPOINT [ "/entrypoint_zsh.sh" ]
 
-
-RUN ["/bin/bash", "-c", "cp /dev_ws/src/.docker/entrypoint.sh / && chmod 777 /entrypoint.sh"]
-ENTRYPOINT [ "/entrypoint.sh" ]
-
-CMD ["bash"]
+# ZSH
+# Set shell to zsh
+SHELL ["zsh", "chsh -s ~/.zshrc" ]
+CMD ["zsh"]
