@@ -1,3 +1,4 @@
+
 # Docker Moveit 1 and Universal Robots
 
 ## Description
@@ -25,16 +26,12 @@ Contents:
   - Set acceleration_limits to true and set max_acc in config/joint_limits.yaml
   - Add STOMP pipeline to move_group.launch
 
+- RQT joint trajectory plot
+
 ## Docker
 
 This container will access to the users home directory and logged in as the user with their password and x sever access.  
 The .docker folder of this repo contains convenience hell scripts for building and running the Docker container. These should be run from the root of the repo.
-
-### Docker installation
-
-Follow instructions from Docker [docs](https://docs.docker.com/engine/install/ubuntu/)
-
-To enable Docker to use Nvidia driver (Nvidia driver is not compatible with preempt_rt kernel) follow instructions from Nvidia [docs](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 
 ### Build Image
 
@@ -112,36 +109,15 @@ docker run -it \
     moveit1_ur:latest
 ```
 
-### IDE
+## Moveit
 
-#### pycharm
-
-install Pycharm using Jetbrains toolbox, once in the container run
-
-```shell
-/home/$USER/.local/share/JetBrains/Toolbox/apps/PyCharm-P/ch-0/222.3739.56/bin/pycharm.sh
-```
-
-#### vscode
-
-install the following vs code extensions
-
-- [docker](https://code.visualstudio.com/docs/containers/overview)
-- [remote development](https://code.visualstudio.com/docs/remote/remote-overview)
-
-dev_container_config for Python development provided in .docker folder
-
-#### terminator
-
-terminator is installed in the container for multiple terminals launch terminator from the CLI inside the container
-
-## Running in simulation
+### Running in simulation
 
 ```shell
 roslaunch ur10e_moveit_config demo.launch
 ```
 
-## Running on the robot
+### Running on the robot
 
 These instructions assume
 
