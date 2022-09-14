@@ -1,6 +1,6 @@
 
 {
-	"workspaceFolder": "/dev_ws/src",
+	"workspaceFolder": "/dev_ws",
 	"extensions": [
 		"donjayamanne.python-extension-pack",
 		"KevinRose.vsc-python-indent",
