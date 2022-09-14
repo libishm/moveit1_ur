@@ -1,0 +1,15 @@
+
+{
+	"workspaceFolder": "/dev_ws/src",
+	"extensions": [
+		"donjayamanne.python-extension-pack",
+		"KevinRose.vsc-python-indent",
+		"ms-iot.vscode-ros",
+		"ms-python.pylint",
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"ms-vscode.cpptools",
+		"njpwerner.autodocstring",
+		"VisualStudioExptTeam.vscodeintellicode"
+	]
+}
