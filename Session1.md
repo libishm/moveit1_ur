@@ -6,6 +6,8 @@
 
 Follow instructions from Docker [docs](https://docs.docker.com/engine/install/ubuntu/)
 
+Follow the first chapter of [linux post installation instructions](https://docs.docker.com/engine/install/linux-postinstall/), manage docker as non-root user
+
 To enable Docker to use Nvidia driver (Nvidia driver is not compatible with preempt_rt kernel) follow instructions from Nvidia [docs](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 
 ### IDE
@@ -31,8 +33,16 @@ Install Pycharm using Jetbrains toolbox, once in the container run
 
 terminator is installed in the container for multiple terminals launch terminator from the CLI inside the container
 
-#### git
+### git
 
 _TODO_
 
 remove submodules and merge into single repo
+
+### configure vs code dev container
+
+In vs code open the command palette (Ctrl-Shift-P)  
+select Remote-containers: Open attached container configuration file  
+Copy paste content of devcontainer.json and save  
+
+_TODO_ add config file
