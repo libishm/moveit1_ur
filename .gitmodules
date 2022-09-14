@@ -1,7 +1,3 @@
-[submodule "universal_robot"]
-	path = universal_robot
-	url = git@github.com:vinceHuyghe/universal_robot.git
-	branch = calibration_devel
 [submodule "rqt_joint_trajectory_plot"]
 	path = rqt_joint_trajectory_plot
 	url = git@github.com:tork-a/rqt_joint_trajectory_plot.git
