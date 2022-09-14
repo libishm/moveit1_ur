@@ -14,3 +14,6 @@
 [submodule "stomp"]
 	path = stomp
 	url = https://github.com/ros-industrial/stomp.git
+[submodule "trajectory_tools"]
+	path = trajectory_tools
+	url = git@github.com:vinceHuyghe/trajectory_tools.git
