@@ -1,6 +1,5 @@
 {
     "ros.distro": "noetic",
-    
     "python.autoComplete.extraPaths": [
         "/dev_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
@@ -8,15 +7,5 @@
     "python.analysis.extraPaths": [
         "/dev_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
-    ],
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": [
-        "--init-hook='import sys; sys.path.append(\"/opt/ros/noetic/lib/python3/dist-packages\")'",
-        "--rcfile=./.pylintrc"
-    ],
-    
-    
-    
-    
+    ]
 }
