@@ -1,18 +1,24 @@
 [submodule "rqt_joint_trajectory_plot"]
 	path = rqt_joint_trajectory_plot
+	branch = master
 	url = git@github.com:tork-a/rqt_joint_trajectory_plot.git
 [submodule "Universal_Robots_ROS_Driver"]
 	path = Universal_Robots_ROS_Driver
+	branch = master
 	url = git@github.com:vinceHuyghe/Universal_Robots_ROS_Driver.git
 [submodule "stomp_ros"]
 	path = stomp_ros
+	branch = melodic-devel
 	url = https://github.com/ros-industrial/stomp_ros.git
 [submodule "stomp"]
 	path = stomp
+	branch = main
 	url = https://github.com/ros-industrial/stomp.git
 [submodule "trajectory_tools"]
+	branch = dev
 	path = trajectory_tools
 	url = git@github.com:vinceHuyghe/trajectory_tools.git
 [submodule "universal_robot"]
 	path = universal_robot
+	branch = calibration_devel
 	url = git@github.com:vinceHuyghe/universal_robot.git
