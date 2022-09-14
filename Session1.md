@@ -10,6 +10,18 @@ Follow the first chapter of [linux post installation instructions](https://docs.
 
 To enable Docker to use Nvidia driver (Nvidia driver is not compatible with preempt_rt kernel) follow instructions from Nvidia [docs](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
 
+Test your installation by running
+
+```shell
+docker run hello-world
+```
+
+if Nvidia
+
+```shell
+docker run --rm --gpus all nvidia/cuda:11.0.3-base-ubuntu20.04 nvidia-smi
+```
+
 ### IDE
 
 #### vscode (recommended)
@@ -33,11 +45,13 @@ Install Pycharm using Jetbrains toolbox, once in the container run
 
 terminator is installed in the container for multiple terminals launch terminator from the CLI inside the container
 
+### Using this repo
+
 ### git
 
-_TODO_
+Fork and clone repo
 
-remove submodules and merge into single repo
+_TODO_ remove submodules and merge into single repo
 
 ### configure vs code dev container
 
