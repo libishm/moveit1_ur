@@ -29,6 +29,12 @@ RUN apt update && apt install -y \
     python3-rosinstall-generator \
     python3-vcstool \
     ros-$ROSDISTRO-rqt \
+    ros-$ROSDISTRO-rqt-action \
+    ros-$ROSDISTRO-rqt-console \
+    ros-$ROSDISTRO-rqt-service-caller \
+    ros-$ROSDISTRO-rqt-graph \
+    ros-$ROSDISTRO-rqt-topic \
+    ros-$ROSDISTRO-rqt-top \
     ros-$ROSDISTRO-rqt-joint-trajectory-controller \
     ros-$ROSDISTRO-moveit \
     ros-$ROSDISTRO-trac-ik-kinematics-plugin \
