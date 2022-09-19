@@ -24,4 +24,5 @@
 	url = git@github.com:vinceHuyghe/universal_robot.git
 [submodule "move_group_sequence"]
 	path = move_group_sequence
+	branch = master
 	url = git@github.com:vinceHuyghe/move_group_sequence.git
