@@ -22,3 +22,6 @@
 	path = universal_robot
 	branch = calibration_devel
 	url = git@github.com:vinceHuyghe/universal_robot.git
+[submodule "move_group_sequence"]
+	path = move_group_sequence
+	url = git@github.com:vinceHuyghe/move_group_sequence.git
