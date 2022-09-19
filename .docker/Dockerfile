@@ -16,9 +16,21 @@ RUN apt update && apt install -y \
     git \
     terminator \
     python3-pip \
+    python3-flake8 \
     build-essential \
     cmake \
     iputils-ping 
+
+RUN pip3 install -U \
+    argcomplete \
+    flake8-blind-except \
+    flake8-builtins \
+    flake8-class-newline \
+    flake8-comprehensions \
+    flake8-deprecated \
+    flake8-docstrings \
+    flake8-import-order \
+    flake8-quotes    
 
 # ROS
 RUN apt update && apt install -y \
