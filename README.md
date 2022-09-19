@@ -140,10 +140,8 @@ sudo ufw allow from 192.168.56.101 to 192.168.56.1
 
 Then launch the following.
 
-```shell
-roslaunch ur10e_moveit_config ur10e_moveit_planning_execution.launch
-```
+_Note_ This launch (using launch-prefix) file will set the the niceness of the ur_robot_driver to -15. This to ensure optimal performance without the realtime kernel.
 
 ```shell
-roslaunch ur10e_moveit_config moveit_rviz.launch
+roslaunch ur10e_moveit_config ur10e_moveit_planning_execution.launch
 ```
