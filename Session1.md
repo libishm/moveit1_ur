@@ -60,3 +60,38 @@ select Remote-containers: Open attached container configuration file
 Copy paste content of devcontainer.json and save  
 
 _TODO_ add config file
+
+## Worflow
+
+### Building the image
+
+From the root of the repo run:
+
+```shell
+docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1_ur:latest
+```
+
+### Running the image
+
+From the root of the repo run:
+
+```shell
+.docker/run_user.sh
+```
+
+With Nvidia driver
+
+```shell
+.docker/run_user_nvidia.sh
+```
+
+### Using the workspace
+
+Take ownership of the workspace with
+
+```shell
+sudo chown -R $USER /dev_ws
+```
+
+Open vscode, go to the docker tab.
+Select the running container, right click and select attach vscode

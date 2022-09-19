@@ -84,7 +84,7 @@ docker run -it \
 For nvidia-docker
 
 ```shell
-.docker/run_user.sh
+.docker/run_user_nvidia.sh
 ```
 
 or
