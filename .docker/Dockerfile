@@ -62,7 +62,7 @@ RUN ["/bin/bash", "-c", "rm -rf /var/lib/apt/lists/*"]
 
 RUN echo "* - nice -15" >> /etc/security/limits.conf
 
-# build STOMP dependencie nlot
+# build STOMP dependency nlot
 RUN ["/bin/bash", "-c", "git clone https://github.com/stevengj/nlopt.git &&\
     cd nlopt &&\
     mkdir build &&\
@@ -71,12 +71,10 @@ RUN ["/bin/bash", "-c", "git clone https://github.com/stevengj/nlopt.git &&\
     make &&\
     make install"]
 
-
 # Create workspace and copy pkg's to container
 RUN mkdir -p dev_ws/src
 WORKDIR /dev_ws/src
 COPY . /dev_ws/src/
-
 
 # build workspace
 WORKDIR /dev_ws
@@ -85,8 +83,6 @@ RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
     catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release &&\
     catkin build \
     "]
-
-
 
 RUN ["/bin/bash", "-c", "cp /dev_ws/src/.docker/entrypoint.sh / && chmod 777 /entrypoint.sh"]
 ENTRYPOINT [ "/entrypoint.sh" ]

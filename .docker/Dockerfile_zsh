@@ -63,7 +63,7 @@ RUN ["/bin/bash", "-c", "rm -rf /var/lib/apt/lists/*"]
 
 RUN echo "* - nice -15" >> /etc/security/limits.conf
 
-# build STOMP dependencie nlot
+# build STOMP dependency nlot
 RUN ["/bin/bash", "-c", "git clone https://github.com/stevengj/nlopt.git &&\
                         cd nlopt &&\
                         mkdir build &&\
