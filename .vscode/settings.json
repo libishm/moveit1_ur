@@ -8,5 +8,7 @@
         "/dev_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
     ],
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }
