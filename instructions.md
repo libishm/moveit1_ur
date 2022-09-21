@@ -6,6 +6,8 @@
 .docker/build_image.sh
 ```
 
+_note_ ur_kinematics will throw warnings during build
+
 ## run image
 
 ```shell
@@ -13,6 +15,8 @@
 ```
 
 ## use
+
+_note_ terminator is installed in the container
 
 launch moveit and ur config
 
