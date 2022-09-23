@@ -29,8 +29,9 @@ RUN pip3 install -U \
     flake8-class-newline \
     flake8-comprehensions \
     flake8-deprecated \
-    flake8-docstrings \
-    flake8-import-order \
+    flake8-return \
+    flake8-length \
+    flake8-todo \
     flake8-quotes    
 
 # ROS
