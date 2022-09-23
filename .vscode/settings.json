@@ -8,6 +8,7 @@
         "/dev_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages",
         "./move_group_sequence/src"
+
     ],
     "cmake.configureOnOpen": false,
     "python.linting.pylintEnabled": false,
