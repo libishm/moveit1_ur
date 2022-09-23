@@ -19,7 +19,8 @@ RUN apt update && apt install -y \
     python3-flake8 \
     build-essential \
     cmake \
-    iputils-ping 
+    iputils-ping \
+    tree
 
 RUN pip3 install -U \
     argcomplete \
