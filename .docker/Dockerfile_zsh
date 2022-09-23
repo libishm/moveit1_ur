@@ -14,7 +14,6 @@ ENV TERM xterm-256color
 RUN apt update && apt install -y \
     ssh \
     git \
-    terminator \
     python3-pip \
     python3-flake8 \
     build-essential \
@@ -104,10 +103,11 @@ RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
     catkin build \
     "]
 
+# Set shell to zsh
+SHELL ["zsh", "chsh -s ~/.zshrc" ]
+
 RUN ["/bin/bash", "-c", "cp /dev_ws/src/.docker/entrypoint_zsh.sh / && chmod 777 /entrypoint_zsh.sh"]
 ENTRYPOINT [ "/entrypoint_zsh.sh" ]
 
 # ZSH
-# Set shell to zsh
-SHELL ["zsh", "chsh -s ~/.zshrc" ]
 CMD ["zsh"]
