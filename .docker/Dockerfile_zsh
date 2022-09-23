@@ -32,7 +32,6 @@ RUN pip3 install -U \
     flake8-return \
     flake8-length \
     flake8-todo \
-    flake8-spellcheck \
     flake8-quotes    
 
 
