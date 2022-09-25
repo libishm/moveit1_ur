@@ -20,6 +20,8 @@
     "cSpell.words": [
         "actionlib",
         "loginfo",
+        "moveit",
+        "roslaunch",
         "rospy"
     ],
     "problems.decorations.enabled": false
