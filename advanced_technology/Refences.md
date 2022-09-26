@@ -9,7 +9,7 @@
 
 - [moveit commander source](https://github.com/ros-planning/moveit/tree/master/moveit_commander/src/moveit_commander)
 
--[moveit_tutorials collision objects](https://github.com/ros-planning/moveit_tutorials/blob/master/doc/collision_environments/scripts/collision_scene_example.py)
+- [moveit_tutorials collision objects](https://github.com/ros-planning/moveit_tutorials/blob/master/doc/collision_environments/scripts/collision_scene_example.py)
 
 ### Pilz
 
