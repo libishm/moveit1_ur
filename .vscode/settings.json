@@ -1,28 +1,43 @@
 {
     "ros.distro": "noetic",
+    "cmake.configureOnOpen": false,
+    // python
     "python.autoComplete.extraPaths": [
         "/dev_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages",
-        "./move_group_sequence/src",
-        "./tarjectory_tools/src"
+        "./move_group_utils/src",
+        "./pilz_robot_program/src"
     ],
     "python.analysis.extraPaths": [
         "/dev_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages",
-        "./move_group_sequence/src",
-        "./tarjectory_tools/src"
-
+        "./move_group_utils/src",
+        "./pilz_robot_program/src"
     ],
-    "cmake.configureOnOpen": false,
-    "python.linting.pylintEnabled": false,
+    
+    "python.formatting.provider": "autopep8",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.formatOnSave": true
+      },
+    "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
+    // spelling
     "cSpell.words": [
         "actionlib",
+        "devcontainer",
+        "launchfile",
+        "launchfiles",
         "loginfo",
         "moveit",
+        "pyassimp",
         "roslaunch",
         "rospy"
     ],
+    // vscode
     "problems.decorations.enabled": false
 }

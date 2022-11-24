@@ -4,25 +4,26 @@ FROM ros:$ROSDISTRO-robot
 
 ARG ROSDISTRO
 
+# Set environment variables
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
 ENV TERM xterm-256color
 
-# Tools
-RUN apt update && apt install -y \
+# Install tools
+RUN apt-get update && apt-get install -y \
     ssh \
     git \
+    curl \
     terminator \
     python3-pip \
     python3-flake8 \
     build-essential \
     cmake \
-    iputils-ping \
-    tree
+    iputils-ping 
 
-RUN pip3 install -U \
+RUN pip3 install -U --no-cache-dir\
     argcomplete \
     flake8-blind-except \
     flake8-builtins \
@@ -32,10 +33,15 @@ RUN pip3 install -U \
     flake8-return \
     flake8-length \
     flake8-todo \
-    flake8-quotes    
+    flake8-quotes \
+    pycodestyle \
+    autopep8 \
+    numpy \
+    open3d \
+    pyquaternion
 
-# ROS
-RUN apt update && apt install -y \
+# Intall ROS pkgs and dependencies
+RUN apt-get update && apt-get install -y \
     pkg-config \
     python3-catkin-tools \
     python3-rosdep \
@@ -48,9 +54,12 @@ RUN apt update && apt install -y \
     ros-$ROSDISTRO-rqt-graph \
     ros-$ROSDISTRO-rqt-topic \
     ros-$ROSDISTRO-rqt-top \
+    ros-$ROSDISTRO-rqt-reconfigure \
     ros-$ROSDISTRO-rqt-joint-trajectory-controller \
+    ros-$ROSDISTRO-rqt-tf-tree \
     ros-$ROSDISTRO-moveit \
     ros-$ROSDISTRO-trac-ik-kinematics-plugin \
+    ros-$ROSDISTRO-ros-industrial-cmake-boilerplate \  
     # UR dependencies
     ros-$ROSDISTRO-ur-client-library \
     ros-$ROSDISTRO-ur-msgs \
@@ -68,21 +77,48 @@ RUN apt update && apt install -y \
     ros-$ROSDISTRO-velocity-controllers \
     ros-$ROSDISTRO-effort-controllers \
     ros-$ROSDISTRO-kdl-parser \
-    # RQT joint trajectory plot
+    # RQT joint trajectory plot dependencies
     ros-$ROSDISTRO-roslint \
     ros-$ROSDISTRO-rqt-gui \
     ros-$ROSDISTRO-rqt-gui-py \
     ros-$ROSDISTRO-rqt-py-common \
     python3-matplotlib \
-    #STOMP
-    ros-$ROSDISTRO-ros-industrial-cmake-boilerplate 
+    # roslibpy
+    ros-$ROS_DISTRO-rosbridge-suite \
+    # Realsense dependencies
+    software-properties-common \
+    ros-$ROS_DISTRO-rqt-image-view \
+    ros-$ROS_DISTRO-ddynamic-reconfigure \
+    ros-$ROS_DISTRO-rgbd-launch
+    ## Astra camera
+    # libgflags-dev \
+    # ros-$ROS_DISTRO-image-geometry \
+    # ros-$ROS_DISTRO-camera-info-manager \
+    # ros-$ROS_DISTRO-image-transport \
+    # ros-$ROS_DISTRO-image-publisher \
+    # libgoogle-glog-dev \
+    # libusb-1.0-0-dev \
+    # libeigen3-dev
+    
+# Add repo and install realsense pkgs
+RUN apt-key adv \
+    --keyserver keyserver.ubuntu.com \
+    --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || \
+    apt-key adv \
+    --keyserver hkp://keyserver.ubuntu.com:80 \
+    --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE \
+    && add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u \
+    && apt-get install -y --install-recommends \
+    librealsense2-dkms librealsense2-utils \
+    librealsense2-dev librealsense2-dbg
 
 # Reduce size by removing apt cache
 RUN ["/bin/bash", "-c", "rm -rf /var/lib/apt/lists/*"]
 
+# Add nice permision to container
 RUN echo "* - nice -15" >> /etc/security/limits.conf
 
-# build STOMP dependency nlot
+# build STOMP dependency nlopt
 RUN ["/bin/bash", "-c", "git clone https://github.com/stevengj/nlopt.git &&\
     cd nlopt &&\
     mkdir build &&\
@@ -91,12 +127,34 @@ RUN ["/bin/bash", "-c", "git clone https://github.com/stevengj/nlopt.git &&\
     make &&\
     make install"]
 
-# Create workspace and copy pkg's to container
+# # build astra dependency libuvc
+# RUN ["/bin/bash", "-c", "git clone https://github.com/libuvc/libuvc.git &&\
+#     cd libuvc &&\
+#     mkdir build && cd build &&\
+#     cmake .. && make -j4 &&\
+#     sudo make install &&\
+#     sudo ldconfig"]
+
+# Create workspace
 RUN mkdir -p dev_ws/src
 WORKDIR /dev_ws/src
+
+# Clone pkgs into workspace
+# STOMP
+RUN ["/bin/bash", "-c", "git clone https://github.com/ros-industrial/stomp.git &&\
+    git clone https://github.com/ros-industrial/stomp_ros.git"]
+
+# rqt joint trajectory plot & realsense
+RUN ["/bin/bash", "-c", "git clone https://github.com/tork-a/rqt_joint_trajectory_plot.git &&\
+    git clone https://github.com/rjwb1/realsense-ros.git"]
+
+## Astra camera
+# RUN ["/bin/bash", "-c", "git clone https://github.com/orbbec/ros_astra_camera.git"]
+
+# Copy local pkg's from host to container
 COPY . /dev_ws/src/
 
-# build workspace
+# Build catkin workspace
 WORKDIR /dev_ws
 
 RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
@@ -104,7 +162,13 @@ RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
     catkin build \
     "]
 
+# Copy and make setup script executable
+COPY .docker/setup.bash /dev_ws/setup.bash
+RUN ["/bin/bash", "-c", " chmod 777 /dev_ws/setup.bash"]
+
+# Copy and make entrypoint script executable
 RUN ["/bin/bash", "-c", "cp /dev_ws/src/.docker/entrypoint.sh / && chmod 777 /entrypoint.sh"]
 ENTRYPOINT [ "/entrypoint.sh" ]
 
+# Start bash shell
 CMD ["bash"]

@@ -1,28 +1,23 @@
-[submodule "rqt_joint_trajectory_plot"]
-	path = rqt_joint_trajectory_plot
-	branch = master
-	url = git@github.com:tork-a/rqt_joint_trajectory_plot.git
 [submodule "Universal_Robots_ROS_Driver"]
 	path = Universal_Robots_ROS_Driver
 	branch = master
 	url = git@github.com:vinceHuyghe/Universal_Robots_ROS_Driver.git
-[submodule "stomp_ros"]
-	path = stomp_ros
-	branch = melodic-devel
-	url = https://github.com/ros-industrial/stomp_ros.git
-[submodule "stomp"]
-	path = stomp
-	branch = main
-	url = https://github.com/ros-industrial/stomp.git
-[submodule "trajectory_tools"]
-	branch = dev
-	path = trajectory_tools
-	url = git@github.com:vinceHuyghe/trajectory_tools.git
 [submodule "universal_robot"]
 	path = universal_robot
 	branch = calibration_devel
 	url = git@github.com:vinceHuyghe/universal_robot.git
-[submodule "move_group_sequence"]
-	path = move_group_sequence
-	branch = master
-	url = git@github.com:vinceHuyghe/move_group_sequence.git
+[submodule "industrial_reconstruction"]
+	path = industrial_reconstruction
+	branch = ros1
+	url = git@github.com:vinceHuyghe/industrial_reconstruction.git
+[submodule "ur10e_examples"]
+	path = ur10e_examples
+	branch = dev
+	url = git@github.com:vinceHuyghe/ur10e_examples.git
+[submodule "move_group_utils"]
+	path = move_group_utils
+	branch =  dev
+	url = git@github.com:vinceHuyghe/move_group_utils.git
+[submodule "pilz_robot_program"]
+	path = pilz_robot_program
+	url = git@github.com:vinceHuyghe/pilz_robot_program.git
