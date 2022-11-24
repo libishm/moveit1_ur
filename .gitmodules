@@ -20,4 +20,5 @@
 	url = git@github.com:vinceHuyghe/move_group_utils.git
 [submodule "pilz_robot_program"]
 	path = pilz_robot_program
+	branch = main
 	url = git@github.com:vinceHuyghe/pilz_robot_program.git
