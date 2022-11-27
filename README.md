@@ -39,9 +39,13 @@ See instructions directory
 roslaunch ur10e_moveit_config demo.launch
 ```
 
+&nbsp;
+
 ### Running on the robot
 
 In order to ensure optimal performance of the ur_driver without the realtime kernel the ur_robot-driver is run with a high priority.
+
+&nbsp;
 
 #### Process priority
 
@@ -57,18 +61,19 @@ Add the following to /etc/security/limits.conf on the Docker host
 
 Once inside the container run `su $USER` in order for the permissions to be loaded.
 
-#### Realsense and Astra udev permissions
+&nbsp;
 
-Download the:
+#### Udev rules
 
-- [realsense udev rules](https://github.com/IntelRealSense/librealsense/blob/master/config/99-realsense-libusb.rules) and place them in /etc/udev/rules.d  
-- [astra udev rules](https://github.com/orbbec/ros_astra_camera/blob/main/56-orbbec-usb.rules)
+Download rules and place them into /etc/udev/rules.d/ on the Docker host
 
-and place them in /etc/udev/rules.d
+- [realsense](https://github.com/IntelRealSense/librealsense/blob/master/config/99-realsense-libusb.rules)
 
-Run ```sudo service udev reload``` and ```sudo service udev restart``` to load the new rules
+- [asra](https://github.com/orbbec/astra/blob/master/install/orbbec-usb.rules)
 
 Reboot host if camera is not detected
+
+&nbsp;
 
 #### Network configuration
 

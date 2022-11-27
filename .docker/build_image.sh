@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
-echo -e "Building moveit1_ur:lastest \nWARNING: this script must be run from the root of the repo not from within the .docker folder"
+echo -e "Building moveit1_ur:lastest image"
 
-docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1_ur:latest .
+DOCKER_BUILDKIT=1 \
+docker build --pull --rm -f ./.docker/Dockerfile_staged \
+--build-arg BUILDKIT_INLINE_CACHE=1 \
+--target bash \
+--tag moveit1_ur:latest .

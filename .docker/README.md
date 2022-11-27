@@ -1,11 +1,12 @@
 # Docker instructions
 
-This container will access to the users home directory and logged in as the user with their password and x sever access.  
-The .docker folder of this repo contains convenience hell scripts for building and running the Docker container. These should be run from the root of the repo.
+The .docker folder of this repo contains convenience shell scripts for building and running the Docker container. These should be run from the root of the repo.
+
+The Dockefile uses multiple stages to unable features such as STOMP and sensors, see Dockerfile comments for more information.
 
 ### Build Image
 
-Running the following command from the root of the repo will execute the build image shell script
+Execute the build image shell script
 
 ```shell
 .docker/build_image.sh
@@ -14,14 +15,20 @@ Running the following command from the root of the repo will execute the build i
 Or
 
 ```shell
-docker build --pull --rm -f ./.docker/Dockerfile  -t moveit1_ur:latest
+DOCKER_BUILDKIT=1 \
+docker build --pull --rm -f ./.docker/Dockerfile_staged \
+--build-arg BUILDKIT_INLINE_CACHE=1 \
+--target bash \
+--tag moveit1_ur:latest .
 ```
 
 ### Run Image
 
 note: On Ubuntu 20.04 --privileged flag is required on Ubuntu 22 it can be omitted
 
-Running the following command from the root of the repo will execute the run image shell script
+The instructions below will give the container access to the users home directory and log in as the user with their password and x sever access.  
+
+Execute the run image shell script
 
 ```shell
 .docker/run_user.sh
@@ -42,6 +49,7 @@ docker run -it \
     --volume="/etc/shadow:/etc/shadow:ro" \
     --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    --volume="/dev:/dev" \
     --net=host \
     --cap-add=sys_nice \
     moveit1_ur:latest
@@ -68,6 +76,7 @@ docker run -it \
     --volume="/etc/shadow:/etc/shadow:ro" \
     --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    --volume="/dev:/dev" \
     --net=host \
     --privileged \
     --cap-add=sys_nice \
@@ -91,10 +100,13 @@ Add the following to /etc/security/limits.conf on the Docker host
 
 Once inside the container run `su $USER` in order for the permissions to be loaded.
 
-#### Udev rules for Realsense Driver
+#### Udev rules
 
-Download the [udev rules](https://github.com/IntelRealSense/librealsense/blob/master/config/99-realsense-libusb.rules) and place them in /etc/udev/rules.d  
+Download rules and place them into /etc/udev/rules.d/ on the Docker host
 
+- [realsense](https://github.com/IntelRealSense/librealsense/blob/master/config/99-realsense-libusb.rules)
+
+- [asra](https://github.com/orbbec/astra/blob/master/install/orbbec-usb.rules)
 ### Connecting to the robot
 
 The bringup launch file will attempt to start the UR driver with hight process priority.  
