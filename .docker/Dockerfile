@@ -11,11 +11,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 ENV TERM xterm-256color
 
+
+# TODO
 # Remove display warnings rviz rqt
-RUN mkdir /tmp/runtime-root
-ENV XDG_RUNTIME_DIR "/tmp/runtime-root"
-RUN chmod -R 0700 /tmp/runtime-root
-ENV NO_AT_BRIDGE 1
+# RUN mkdir /tmp/runtime-root
+# ENV XDG_RUNTIME_DIR "/tmp/runtime-root"
+# RUN chmod -R 0700 /tmp/runtime-root
+# ENV NO_AT_BRIDGE 1
 
 # Install tools
 RUN apt-get update && apt-get install -y --no-install-recommends\
