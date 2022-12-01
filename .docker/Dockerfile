@@ -59,7 +59,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends\
     ros-$ROSDISTRO-rqt-reconfigure \
     ros-$ROSDISTRO-rqt-joint-trajectory-controller \
     ros-$ROSDISTRO-rqt-tf-tree \
-    ros-$ROS_DISTRO-rqt-image-view \
+    ros-$ROSDISTRO-rqt-image-view \
     ros-$ROSDISTRO-moveit \
     ros-$ROSDISTRO-trac-ik-kinematics-plugin \
     ros-$ROSDISTRO-ros-industrial-cmake-boilerplate \  
