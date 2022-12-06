@@ -36,7 +36,8 @@
         "moveit",
         "pyassimp",
         "roslaunch",
-        "rospy"
+        "rospy",
+        "urdf"
     ],
     // vscode
     "problems.decorations.enabled": false
