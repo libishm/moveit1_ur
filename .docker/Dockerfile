@@ -66,6 +66,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends\
     ros-$ROSDISTRO-ros-industrial-cmake-boilerplate \ 
     ros-$ROSDISTRO-urdf-parser-plugin \
     ros-$ROSDISTRO-urdfdom-py \
+    ros-$ROSDISTRO-kdl-parser-py \
     # UR dependencies
     ros-$ROSDISTRO-ur-client-library \
     ros-$ROSDISTRO-ur-msgs \
