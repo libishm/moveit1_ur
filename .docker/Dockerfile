@@ -49,6 +49,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends\
     python3-rosdep \
     python3-rosinstall-generator \
     python3-vcstool \
+    python3-pykdl \
     ros-$ROSDISTRO-rqt \
     ros-$ROSDISTRO-rqt-action \
     ros-$ROSDISTRO-rqt-console \
@@ -62,7 +63,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends\
     ros-$ROSDISTRO-rqt-image-view \
     ros-$ROSDISTRO-moveit \
     ros-$ROSDISTRO-trac-ik-kinematics-plugin \
-    ros-$ROSDISTRO-ros-industrial-cmake-boilerplate \  
+    ros-$ROSDISTRO-ros-industrial-cmake-boilerplate \ 
+    ros-$ROSDISTRO-urdf-parser-plugin \
+    ros-$ROSDISTRO-urdfdom-py \
     # UR dependencies
     ros-$ROSDISTRO-ur-client-library \
     ros-$ROSDISTRO-ur-msgs \
