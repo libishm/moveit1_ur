@@ -84,7 +84,7 @@ These instructions assume
 
 If URcaps fails to connect add the following rule to the firewall (ufw) on the docker host.
 
-```shell
+```bash
 sudo ufw allow from 192.168.56.101 to 192.168.56.1
 ```
 
@@ -92,13 +92,13 @@ Launch the robot bringup, this file sets the robot IP and loads the kinematics c
 
 - without endeffector
 
-    ```shell
+    ```bash
     ur10e_moveit_config ur10e_iaac_bringup.launch 
     ```
 
 - with endeffector
 
-    ```shell
+    ```bash
     ur10e_ee_moveit_config ur10e_ee_iaac_bringup.launch 
     ```
 
@@ -106,7 +106,7 @@ On the ur pendant load and start URcaps
 
 When the robot is connected you should see the following in the terminal used to launch the bringup
 
-```shell
+```bash
 [ INFO]  Sent program to robot
 [ INFO]  Robot connected to reverse interface. Ready to receive control commands.
 ```
