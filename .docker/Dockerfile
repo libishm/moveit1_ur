@@ -103,12 +103,10 @@ RUN echo "* - nice -15" >> /etc/security/limits.conf
 RUN mkdir -p dev_ws/src
 WORKDIR /dev_ws/src
 
-RUN ["/bin/bash", "-c", "git clone https://github.com/tork-a/rqt_joint_trajectory_plot.git &&\
-    git clone https://github.com/gramaziokohler/ros_file_server.git "]
+RUN ["/bin/bash", "-c", "git clone https://github.com/tork-a/rqt_joint_trajectory_plot.git "]
 
 # Copy local pkg's from host to container
 COPY . /dev_ws/src/
-
 
 # Stomp motion planning
 # ----------------------------------------
