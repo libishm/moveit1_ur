@@ -105,9 +105,6 @@ WORKDIR /dev_ws/src
 
 RUN ["/bin/bash", "-c", "git clone https://github.com/tork-a/rqt_joint_trajectory_plot.git "]
 
-# Copy local pkg's from host to container
-COPY . /dev_ws/src/
-
 # Stomp motion planning
 # ----------------------------------------
 FROM base as stomp
@@ -185,6 +182,9 @@ RUN ["/bin/bash", "-c", "git clone https://github.com/orbbec/ros_astra_camera.gi
 FROM realsense as bash
 ARG ROSDISTRO
 
+# Copy local pkg's from host to container
+COPY . /dev_ws/src/
+
 # Build catkin workspace
 WORKDIR /dev_ws
 RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
@@ -213,6 +213,9 @@ ARG ROSDISTRO
 RUN apt-get update && apt-get install -y \
     zsh \
     && rm -rf /var/lib/apt/lists/*
+
+# Copy local pkg's from host to container
+COPY . /dev_ws/src/
 
 WORKDIR /dev_ws
 RUN ["/bin/bash", "-c", "source /opt/ros/$ROSDISTRO/setup.bash &&\
