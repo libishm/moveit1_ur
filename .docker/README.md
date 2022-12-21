@@ -119,11 +119,11 @@ requires the following vscode extensions to be installed
 
 devcontainer.json is included in the .docker directory of this repo.
 
-Attach vscode to container
+#### Attach vscode to container
 
 In vs code go to the Docker tab in the side bar. Right click on the container named moveit1_ur:latest. Select attach vscode.
 
-When attaching to the container for first time:
+#### When attaching to the container for first time
 
 In vs code open the command palette (Ctrl-Shift-P). Select Remote-containers: Open attached container configuration file. Copy paste content of devcontainer.json and save. Close the vscode window and reattach.
 
