@@ -137,19 +137,19 @@ Terminator is installed in the container for multiple terminals launch terminato
 
 For automatic sourcing of ros environment add the following to your .bashrc or .zshrc
 
-bash
+Add the following to your .bashrc (located in home/$USER) to automatically source the ROS environment when opening a new shell in the container.
 
 ```bash
-if [[ "$PWD" = "/dev_ws" && -r /dev_ws/setup.bash ]] || [[ "$PWD" = "/dev_ws/src" && -r /dev_ws/setup.bash ]]; then
-  source /dev_ws/setup.bash
+if [ -f "/dev_ws/setup.bash" ]; then
+    source /dev_ws/setup.bash
 fi
 ```
 
-zsh
+or if you are using zsh to your .zshrc
 
 ```zsh
-if [[ "$PWD = /dev_ws" && -r /dev_ws/setup.zsh ]]||[[ "$PWD = /dev_ws/src" && -r /dev_ws/setup.zsh ]]; then
-  source /dev_ws/setup.zsh
+if [ -f "/dev_ws/setup.zsh" ]; then
+    source /dev_ws/setup.zsh
 fi
 ```
 
@@ -213,110 +213,3 @@ When the robot is connected you should see the following in the terminal you lau
 
 You can use the `top` command to check the ur driver is running unnicely
 
-&nbsp;
-
-## Without docker
-
-Install ROS [noetic](http://wiki.ros.org/noetic/Installation)
-
-Install Python linter, formatter and ROS pkg dependencies
-
-```shell
-pip3 install -U \
-    argcomplete \
-    black \
-    flake8-blind-except \
-    flake8-builtins \
-    flake8-class-newline \
-    flake8-comprehensions \
-    flake8-deprecated \
-    flake8-return \
-    flake8-length \
-    flake8-todo \
-    flake8-quotes \
-    numpy \
-    open3d \
-    pyquaternion
-```
-
-Ensure the following ros pkg's and dependencies are installed.
-
-```shell
-apt update && apt install -y \
-    python3-pip \
-    python3-flake8 \
-    build-essential \
-    cmake \
-    pkg-config \
-    python3-catkin-tools \
-    python3-rosdep \
-    python3-rosinstall-generator \
-    python3-vcstool \
-    ros-noetic-rqt \
-    ros-noetic-rqt-action \
-    ros-noetic-rqt-console \
-    ros-noetic-rqt-service-caller \
-    ros-noetic-rqt-graph \
-    ros-noetic-rqt-topic \
-    ros-noetic-rqt-top \
-    ros-noetic-rqt-joint-trajectory-controller \
-    ros-noetic-moveit \
-    ros-noetic-trac-ik-kinematics-plugin \
-    ros-noetic-ur-client-library \
-    ros-noetic-ur-msgs \
-    ros-noetic-controller-manager \
-    ros-noetic-pass-through-controllers \
-    ros-noetic-force-torque-sensor-controller \
-    ros-noetic-industrial-robot-status-interface \
-    ros-noetic-industrial-robot-status-controller \
-    ros-noetic-joint-state-controller \
-    ros-noetic-joint-trajectory-controller \
-    ros-noetic-cartesian-trajectory-controller \
-    ros-noetic-scaled-joint-trajectory-controller \
-    ros-noetic-speed-scaling-interface \
-    ros-noetic-speed-scaling-state-controller \
-    ros-noetic-velocity-controllers \
-    ros-noetic-effort-controllers \
-    ros-noetic-kdl-parser \
-    ros-noetic-roslint \
-    ros-noetic-rqt-gui \
-    ros-noetic-rqt-gui-py \
-    ros-noetic-rqt-py-common \
-    python3-matplotlib \
-    ros-noetic-ros-industrial-cmake-boilerplate \
-    ros-noetic-rqt-image-view \
-    software-properties-common \
-    ros-noetic-ddynamic-reconfigure \
-    ros-noetic-rgbd-launch \
-```
-
-For STOMP motion planner, you will need to install nlopt. Follow installation instructions on [nlopt github page](https://github.com/stevengj/nlopt).
-
-For Realsense D405
-
-```
-apt-key adv \
-    --keyserver keyserver.ubuntu.com \
-    --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || \
-    apt-key adv \
-    --keyserver hkp://keyserver.ubuntu.com:80 \
-    --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE \
-    && add-apt-repository "deb https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" -u \
-    && apt-get install -y --install-recommends \
-    librealsense2-dkms librealsense2-utils \
-    librealsense2-dev librealsense2-dbg
-```
-
-Follow "Set up required permissions on host for interfacing with hardware" in docker section"
-
-Create a catkin workspace and clone the following pkgs to the src directory.
-
-- [ros industrial stomp](https://github.com/ros-industrial/stomp)
-- [ros industrial stomp_ros](https://github.com/ros-industrial/stomp_ros)
-- [rqt joint trajectory](https://github.com/tork-a/rqt_joint_trajectory_plot)
-- [realsense-ros](https://github.com/rjwb1/realsense-ros.git)
-
-Fork and clone this repo and clone to src directory.
-
-Run `catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release`  
-Run `catkin build`  

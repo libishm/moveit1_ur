@@ -2,9 +2,9 @@
 
 The .docker folder of this repo contains convenience shell scripts for building and running the Docker container. These should be run from the root of the repo.
 
-The Dockefile uses multiple stages to unable features such as STOMP and sensors, see Dockerfile comments for more information.
+The Dockefile uses multiple stages to enable features such as STOMP and RGBD cameras, see Dockerfile comments for more information.
 
-### Build Image
+## Build Image
 
 Execute the build image shell script
 
@@ -22,7 +22,7 @@ docker build --pull --rm -f ./.docker/Dockerfile_staged \
 --tag moveit1_ur:latest .
 ```
 
-### Run Image
+## Run Image
 
 note: On Ubuntu 20.04 --privileged flag is required on Ubuntu 22 it can be omitted
 
@@ -84,9 +84,52 @@ docker run -it \
     moveit1_ur:latest
 ```
 
-### Set up required permissions on host for interfacing with hardware
+## Use
 
-#### Process priority for UR driver
+### terminal
+
+#### multiple terminals
+
+terminator is installed in the container and can be run with `terminator`.
+
+#### sourcing the ROS environment
+
+Add the following to your .bashrc (located in home/$USER) to automatically source the ROS environment when opening a new shell in the container.
+
+```bash
+if [ -f "/dev_ws/setup.bash" ]; then
+    source /dev_ws/setup.bash
+fi
+```
+
+or if you are using zsh to your .zshrc
+
+```zsh
+if [ -f "/dev_ws/setup.zsh" ]; then
+    source /dev_ws/setup.zsh
+fi
+```
+
+### vscode integration
+
+requires the following vscode extensions to be installed
+
+- [docker](https://code.visualstudio.com/docs/containers/overview)
+- [remote development](https://code.visualstudio.com/docs/remote/remote-overview)
+
+devcontainer.json is included in the .docker directory of this repo.
+
+Attach vscode to container
+
+In vs code go to the Docker tab in the side bar. Right click on the container named moveit1_ur:latest. Select attach vscode.
+
+When attaching to the container for first time:
+
+In vs code open the command palette (Ctrl-Shift-P). Select Remote-containers: Open attached container configuration file. Copy paste content of devcontainer.json and save. Close the vscode window and reattach.
+
+## Interfacing with hardware
+
+### Process priority for UR driver
 
 When not using a realtime kernel it is recommended to run the UR driver with high process priority. The bringup launch file will attempt to start the UR driver with hight process priority.
 
@@ -100,13 +143,14 @@ Add the following to /etc/security/limits.conf on the Docker host
 
 Once inside the container run `su $USER` in order for the permissions to be loaded.
 
-#### Udev rules
+### Udev rules
 
 Download rules and place them into /etc/udev/rules.d/ on the Docker host
 
 - [realsense](https://github.com/IntelRealSense/librealsense/blob/master/config/99-realsense-libusb.rules)
 
 - [asra](https://github.com/orbbec/astra/blob/master/install/orbbec-usb.rules)
+
 ### Connecting to the robot
 
 The bringup launch file will attempt to start the UR driver with hight process priority.  
