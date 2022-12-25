@@ -38,6 +38,7 @@
         "roslaunch",
         "rospy",
         "toolpath",
+        "toolpaths",
         "urdf"
     ],
     // vscode
