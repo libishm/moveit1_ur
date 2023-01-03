@@ -150,8 +150,8 @@ RUN git clone https://github.com/rjwb1/realsense-ros.git
 
 # Astra camera
 # ----------------------------------------
-# FROM base as astra
-FROM realsense as astra
+FROM base as astra
+# FROM realsense as astra
 # FROM stomp as astra
 
 RUN apt-get update && apt-get install -y --no-install-recommends\
@@ -177,6 +177,12 @@ RUN ["/bin/bash", "-c", "git clone https://github.com/libuvc/libuvc.git &&\
 WORKDIR /dev_ws/src
 RUN ["/bin/bash", "-c", "git clone https://github.com/orbbec/ros_astra_camera.git"]
 
+# Azure camera
+# ----------------------------------------
+FROM realsense as azure
+
+WORKDIR /dev_ws/src
+RUN ["/bin/bash", "-c", "git clone https://github.com/microsoft/Azure_Kinect_ROS_Driver.git"]
 
 # Bash final stage
 # ----------------------------------------
@@ -207,7 +213,7 @@ CMD ["bash"]
 
 # Zsh final stage
 # ----------------------------------------
-FROM astra as zsh
+FROM azure as zsh
 ARG ROSDISTRO
 
 # install zsh and remove apt cache
