@@ -150,7 +150,8 @@ RUN git clone https://github.com/rjwb1/realsense-ros.git
 
 # Astra camera
 # ----------------------------------------
-FROM base as astra
+# FROM base as astra
+FROM realsense as astra
 # FROM stomp as astra
 
 RUN apt-get update && apt-get install -y --no-install-recommends\
@@ -206,7 +207,7 @@ CMD ["bash"]
 
 # Zsh final stage
 # ----------------------------------------
-FROM realsense as zsh
+FROM astra as zsh
 ARG ROSDISTRO
 
 # install zsh and remove apt cache
