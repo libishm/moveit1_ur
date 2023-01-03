@@ -181,6 +181,17 @@ RUN ["/bin/bash", "-c", "git clone https://github.com/orbbec/ros_astra_camera.gi
 # ----------------------------------------
 FROM realsense as azure
 
+RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add - 
+RUN apt-add-repository https://packages.microsoft.com/ubuntu/20.04/prod
+
+RUN apt-get update && apt-get install -y --no-install-recommends\
+    ros-$ROS_DISTRO-camera-info-manager \
+    libk4a1.4 \
+    libkra1.4-dev \
+    k4a-tools \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /dev_ws/src
 RUN ["/bin/bash", "-c", "git clone https://github.com/microsoft/Azure_Kinect_ROS_Driver.git"]
 
@@ -213,7 +224,7 @@ CMD ["bash"]
 
 # Zsh final stage
 # ----------------------------------------
-FROM azure as zsh
+FROM base as zsh
 ARG ROSDISTRO
 
 # install zsh and remove apt cache
