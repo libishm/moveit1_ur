@@ -6,13 +6,15 @@
         "/dev_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages",
         "./move_group_utils/src",
-        "./pilz_robot_program/src"
+        "./pilz_robot_program/src",
+        "./industrial_reconstruction/industrial_reconstruction/src"
     ],
     "python.analysis.extraPaths": [
         "/dev_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages",
         "./move_group_utils/src",
-        "./pilz_robot_program/src"
+        "./pilz_robot_program/src",
+        "./industrial_reconstruction/industrial_reconstruction/src"
     ],
     
     "python.formatting.provider": "autopep8",
