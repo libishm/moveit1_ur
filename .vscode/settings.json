@@ -36,9 +36,11 @@
         "launchfiles",
         "loginfo",
         "moveit",
+        "ompl",
         "pyassimp",
         "roslaunch",
         "rospy",
+        "rviz",
         "toolpath",
         "toolpaths",
         "urdf"
