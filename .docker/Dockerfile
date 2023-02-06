@@ -41,7 +41,8 @@ RUN pip3 install -U --no-cache-dir\
     numpy \
     open3d \
     pyquaternion \
-    python-dateutil
+    python-dateutil \
+    matplotlib 
 
 # Intall ROS pkgs and dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends\
@@ -91,7 +92,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends\
     ros-$ROSDISTRO-rqt-gui \
     ros-$ROSDISTRO-rqt-gui-py \
     ros-$ROSDISTRO-rqt-py-common \
-    python3-matplotlib \
     # roslibpy
     ros-$ROS_DISTRO-rosbridge-suite \
     && apt-get clean \
