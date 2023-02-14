@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install -U --no-cache-dir\
+RUN pip3 install --no-cache-dir --upgrade pip\
     argcomplete \
     flake8-blind-except \
     flake8-builtins \
@@ -39,10 +39,12 @@ RUN pip3 install -U --no-cache-dir\
     pycodestyle \
     autopep8 \
     numpy \
-    open3d \
     pyquaternion \
     python-dateutil \
-    matplotlib 
+    matplotlib \
+    pyyaml
+
+RUN pip3 install --no-cache-dir --upgrade open3d
 
 # Intall ROS pkgs and dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends\
