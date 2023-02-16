@@ -25,7 +25,7 @@
         },
         "editor.formatOnSave": true
       },
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     // spelling
@@ -46,5 +46,6 @@
         "urdf"
     ],
     // vscode
-    "problems.decorations.enabled": false
+    "problems.decorations.enabled": false,
+    "python.linting.prospectorEnabled": false
 }
