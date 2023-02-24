@@ -21,7 +21,6 @@ Contents of container:
 - [RQT joint trajectory plot](https://github.com/tork-a/rqt_joint_trajectory_plot)
 - [industrial reconstruction](https://github.com/gavanderhoorn/industrial_reconstruction) (ros1 branch)
 - [realsense-ros](https://github.com/rjwb1/realsense-ros) (with D405 support in ROS1)
-- [orbec astra](https://github.com/orbbec/ros_astra_camera)
 
 ## Docker
 
@@ -68,8 +67,6 @@ Once inside the container run `su $USER` in order for the permissions to be load
 Download rules and place them into /etc/udev/rules.d/ on the Docker host
 
 - [realsense](https://github.com/IntelRealSense/librealsense/blob/master/config/99-realsense-libusb.rules)
-
-- [asra](https://github.com/orbbec/astra/blob/master/install/orbbec-usb.rules)
 
 Reboot host if camera is not detected
 
